@@ -78,3 +78,8 @@ class FileStorage:
                     count += 1
             return count
         return len(self.__objects.items())
+
+    def get(self, cls, id):
+        """A method to retrieve one object"""
+        key = '{}.{}'.format(cls, id)
+        return self.__objects.get(key)

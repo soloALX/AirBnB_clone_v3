@@ -75,5 +75,12 @@ class FileStorage:
 
     def get(self, cls, id):
         """A method to retrieve one object"""
-        key = '{}.{}'.format(cls, id)
-        return self.__objects.get(key)
+        if cls is not None and id is not None:
+            # get all keys for a specific class
+            cls_keys = self.all(cls).keys()
+            # get the name of the class in str
+            cls_name = list(cls_keys)[0].split('.')[0] 
+            # build new key from class name and id
+            key = '{}.{}'.format(cls_name, id)
+            # retrieve object from key
+            return self.__objects.get(key)

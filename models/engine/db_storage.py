@@ -82,11 +82,18 @@ class DBStorage:
     def get(self, cls, id):
         """A method to retrieve one object"""
         if cls is not None and id is not None:
-            # get all keys for a specific class
-            cls_keys = self.all(cls).keys()
-            # get the name of the class in str
-            cls_name = list(cls_keys)[0].split('.')[0]
+            # get all data for a specific class
+            all_cls = self.all(cls)
+            if isinstance(cls, type):
+                # get all keys for a specific class
+                cls_keys = all_cls.keys()
+                # get the name of the class in str
+                cls_name = list(cls_keys)[0].split('.')[0]
+                # build new key from class name and id
+            elif isinstance(cls, str):
+                # get the name of the class in str
+                cls_name = cls
             # build new key from class name and id
             key = '{}.{}'.format(cls_name, id)
             # retrieve object from key
-            return self.all.get(key)
+            return all_cls.get(key)

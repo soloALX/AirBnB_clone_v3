@@ -79,7 +79,7 @@ class FileStorage:
             # get all keys for a specific class
             cls_keys = self.all(cls).keys()
             # get the name of the class in str
-            cls_name = list(cls_keys)[0].split('.')[0] 
+            cls_name = list(cls_keys)[0].split('.')[0]
             # build new key from class name and id
             key = '{}.{}'.format(cls_name, id)
             # retrieve object from key
